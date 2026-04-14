@@ -1,0 +1,26 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente (NUNCA subir)
+.env
+
+# Sessão do WhatsApp (dados pessoais)
+whatsapp-session/
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Banco de dados local
+database.sqlite
+database.sqlite-wal
+database.sqlite-shm
+
+# Logs e cache do aider
+.aider*
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/

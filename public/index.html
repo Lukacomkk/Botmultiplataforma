@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Multiplataforma - WhatsApp & Telegram</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-whatsapp"></i> WhatsApp + <i class="fab fa-telegram"></i> Telegram Bot</h1>
+            <div class="status-container">
+                <div class="status" id="whatsapp-status">
+                    <span class="status-indicator disconnected"></span>
+                    WhatsApp: Desconectado
+                </div>
+                <div class="status" id="telegram-status">
+                    <span class="status-indicator disconnected"></span>
+                    Telegram: Desconectado
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="qr-section">
+                    <h3><i class="fas fa-qrcode"></i> QR Code WhatsApp</h3>
+                    <div id="qr-container">
+                        <p>Clique para gerar QR Code</p>
+                        <button onclick="generateQR()" class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Gerar QR Code
+                        </button>
+                    </div>
+                </div>
+
+                <div class="conversations">
+                    <h3><i class="fas fa-comments"></i> Conversas</h3>
+                    
+                    <button onclick="syncHistory()" class="btn btn-sm" style="width: 100%; margin-bottom: 10px; background-color: #0088cc; color: white;">
+                        <i class="fas fa-cloud-download-alt"></i> Baixar Histórico
+                    </button>
+
+                    <div id="conversations-list">
+                        <p>Carregando conversas...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-area">
+                <div class="chat-header">
+                    <h3 id="current-contact">Selecione uma conversa</h3>
+                    <div class="chat-actions">
+                        <button onclick="refreshConversations()" class="btn btn-sm">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messages-container">
+                    <div class="welcome-message">
+                        <i class="fas fa-robot"></i>
+                        <h2>Bem-vindo ao Bot Multiplataforma</h2>
+                        <p>Selecione uma conversa à esquerda para começar a enviar mensagens.</p>
+                    </div>
+                </div>
+
+                <div class="message-input">
+                    <textarea 
+                        id="message-input" 
+                        placeholder="Digite sua mensagem..."
+                        disabled
+                    ></textarea>
+                    <div class="input-actions">
+                        <select id="platform-select">
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="telegram">Telegram</option>
+                        </select>
+                        <button onclick="sendMessage()" class="btn btn-primary" disabled id="send-button">
+                            <i class="fas fa-paper-plane"></i> Enviar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification" id="notification">
+            <span id="notification-text"></span>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
